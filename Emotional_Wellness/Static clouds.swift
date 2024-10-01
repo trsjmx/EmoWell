@@ -2,7 +2,7 @@ import SwiftUI
 
 struct IntroPage2: View {
     // Number of clouds and their spacing
-    private let numberOfClouds = 13
+    private let numberOfClouds = 8
     private let minCloudDistance: CGFloat = 150.0 // Minimum distance between clouds
     
     @State private var cloudPositions: [CGSize] = []
@@ -10,7 +10,7 @@ struct IntroPage2: View {
     var body: some View {
         ZStack {
             // Light blue sky background
-            Color.blue.opacity(0.3)
+            Color.cyan.opacity(0.2)
                 .edgesIgnoringSafeArea(.all)
             
             // Clouds positioned randomly but not too close to each other
