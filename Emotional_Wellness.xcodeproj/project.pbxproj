@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		025AE38D2CAED6B80079A085 /* QuitingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE38C2CAED6B80079A085 /* QuitingPage.swift */; };
 		951CA9AE2CAC26BE0071D6EE /* ensuring user emotion .swift in Sources */ = {isa = PBXBuildFile; fileRef = 951CA9AD2CAC26BE0071D6EE /* ensuring user emotion .swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		014185E52CAACD1D00D62294 /* Emotional_Wellness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotional_Wellness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		014185F62CAACD1E00D62294 /* Emotional_WellnessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emotional_WellnessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		014186002CAACD1E00D62294 /* Emotional_WellnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emotional_WellnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		025AE38C2CAED6B80079A085 /* QuitingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitingPage.swift; sourceTree = "<group>"; };
 		951CA9AD2CAC26BE0071D6EE /* ensuring user emotion .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ensuring user emotion .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 		014185DC2CAACD1D00D62294 = {
 			isa = PBXGroup;
 			children = (
+				025AE38C2CAED6B80079A085 /* QuitingPage.swift */,
 				951CA9AD2CAC26BE0071D6EE /* ensuring user emotion .swift */,
 				014185E72CAACD1D00D62294 /* Emotional_Wellness */,
 				014185F92CAACD1E00D62294 /* Emotional_WellnessTests */,
@@ -176,6 +179,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
@@ -242,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				025AE38D2CAED6B80079A085 /* QuitingPage.swift in Sources */,
 				951CA9AE2CAC26BE0071D6EE /* ensuring user emotion .swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
