@@ -74,7 +74,9 @@ struct Dolldisplay: View {
                         // Button Row
                         HStack(spacing: 10) {
                             // Save Button
-                            NavigationLink(destination: NameSavedView(savedName: savedImageName)) {
+                            Button(action: {
+                                saveName()
+                            }) {
                                 Text("Save")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
@@ -100,9 +102,16 @@ struct Dolldisplay: View {
 
                         // Confirmation Message
                         if showConfirmation {
-                            Text("Saved doll Name: \(savedImageName ?? "None")")
-                                .padding()
-                                .foregroundColor(.blue)
+                            VStack {
+                                Text("Saved Name \(savedImageName ?? "None")")
+                                    .fontWeight(.bold)
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(Color.green.opacity(0.7)) // Adjusted opacity
+                                    .cornerRadius(8)
+                                    .padding(.top, 10)
+                            }
+                            .transition(.opacity) // Use opacity transition
                         }
                     }
                     .padding(.bottom, 30)
@@ -114,6 +123,18 @@ struct Dolldisplay: View {
             }
             .onDisappear {
                 timer?.invalidate()
+            }
+        }
+    }
+
+    func saveName() {
+        savedImageName = imageName
+        showConfirmation = true
+        
+        // Hide confirmation after 2 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            withAnimation {
+                showConfirmation = false
             }
         }
     }
