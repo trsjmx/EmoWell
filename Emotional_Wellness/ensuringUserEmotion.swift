@@ -1,6 +1,11 @@
+//
+//  IntroPage1.swift
+//  Emotional_Wellness
+//
+//  Created by Eng.Arwa on 29/03/1446 AH.
 import SwiftUI
 
-struct BeeQuestionView: View {
+struct ensuringUserEmotion: View {
     private let numberOfClouds = 8
     private let minCloudDistance: CGFloat = 150.0
     
@@ -11,8 +16,7 @@ struct BeeQuestionView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
+       
                 ZStack {
                     Color.cyan.opacity(0.2)
                         .edgesIgnoringSafeArea(.all)
@@ -27,21 +31,23 @@ struct BeeQuestionView: View {
                     
                     VStack {
                         HStack {
-                            Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(.black)
-                                    .padding()
-                                    .background(Color.white.opacity(0.7))
-                                    .clipShape(Circle())
-                            }
-                            Spacer()
-                        }
-                        .padding(.top, 40)
-                        .padding(.leading, 20)
+                        Button(action: {
+                    // Dismiss the view and go back to the home page
+                    presentationMode.wrappedValue.dismiss()
+                                               }) {
+                    Image(systemName: "chevron.left")
+                    .foregroundColor(.black)
+                    .padding()
+                    .background(Color.yellow.opacity(0.8))
+                    .clipShape(Circle())
+                    }
+                                               
+                    Spacer()
+                    }
+                    .padding(.top, 40)
+                    .padding(.leading, 20)
                         
-                        Spacer()
+                    Spacer()
                         
                         ZStack {
                             // Bee
@@ -49,7 +55,7 @@ struct BeeQuestionView: View {
                                 .resizable()
                                     .frame(width: 200, height: 200) // Adjust this size to make the bee larger
                                     .offset(beePosition)
-                                    .animation(.easeInOut(duration: 3), value: beePosition)
+                                    .animation(.easeInOut(duration: 2), value: beePosition)
                             
                             if showQuestion {
                                 SpeechBubbleView(text: "You seem angry today. Aren't you?")
@@ -64,32 +70,35 @@ struct BeeQuestionView: View {
                         // Buttons only appear after the bee and question bubble
                         if showButtons {
                             HStack(spacing: 20) {
-                                Button(action: {
-                                    print("Unfortunately pressed")
-                                }) {
-                                    Text("Unfortunately")
-                                        .padding()
-                                        .background(Color.white)
-                                        .foregroundColor(.black)
-                                        .cornerRadius(10)
-                                }
                                 
+                                Text("Unfortunately")
+                                    .padding()
+                                    .background(Color.yellow.opacity(0.8))
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                            
+                            
                                 Button(action: {
-                                    print("No pressed")
+                            // Dismiss the view and go back to the home page
+                            presentationMode.wrappedValue.dismiss()
                                 }) {
                                     Text("No")
                                         .padding()
-                                        .background(Color.white)
+                                        .background(Color.yellow.opacity(0.8))
                                         .foregroundColor(.black)
                                         .cornerRadius(10)
                                 }
-                            }
+                        }
+                            
+                            .padding()
                             .padding(.bottom, 100)
                             .transition(.opacity) // Fade-in effect for buttons
-                            
+                            }
+                           
                         }
                     }
-                }
+        
+                .navigationBarBackButtonHidden(true) // Hide the default back button
                 .onAppear {
                     generateCloudPositions()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -107,9 +116,8 @@ struct BeeQuestionView: View {
                         }
                     }
                 }
-            }
-            .navigationBarHidden(true)
-        }
+          
+        
     }
     
     func generateCloudPositions() {
@@ -131,6 +139,7 @@ struct BeeQuestionView: View {
         return sqrt(pow(a.width - b.width, 2) + pow(a.height - b.height, 2))
     }
 }
+
 
 struct SpeechBubbleView: View {
     let text: String
@@ -188,6 +197,6 @@ struct SpeechBubbleShape: Shape {
 
 struct BeeQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        BeeQuestionView()
+        ensuringUserEmotion()
     }
 }

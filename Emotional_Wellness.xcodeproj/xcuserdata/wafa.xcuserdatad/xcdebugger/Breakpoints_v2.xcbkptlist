@@ -7,17 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "30504698-F3C0-47EB-8980-A335905B71A9"
-            shouldBeEnabled = "Yes"
+            uuid = "3D706114-1AD0-40A1-A5F8-5F404FA8CEED"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Emotional_Wellness/WAFA_AWAD.swift"
+            filePath = "ensuring user emotion .swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "3"
+            endingLineNumber = "3"
+            landmarkName = "BeeQuestionView"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
