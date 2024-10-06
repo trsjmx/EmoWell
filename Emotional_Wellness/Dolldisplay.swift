@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct DollDisplay: View {
+struct Dolldisplay: View {
     private let numberOfStars = 10
     private let minStarDistance: CGFloat = 100.0
     private let starPlacementRange: CGFloat = 200
@@ -193,6 +193,6 @@ struct NameSavedView: View {
 
 struct DollDisplay_Previews: PreviewProvider {
     static var previews: some View {
-        DollDisplay()
+        Dolldisplay()
     }
 }
