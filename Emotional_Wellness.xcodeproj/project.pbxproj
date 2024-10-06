@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		025AE38D2CAED6B80079A085 /* QuitingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE38C2CAED6B80079A085 /* QuitingPage.swift */; };
-		951CA9AE2CAC26BE0071D6EE /* ensuring user emotion .swift in Sources */ = {isa = PBXBuildFile; fileRef = 951CA9AD2CAC26BE0071D6EE /* ensuring user emotion .swift */; };
+		01249D1E2CB2515F00CDE6EF /* DollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01249D1D2CB2515F00CDE6EF /* DollView.swift */; };
+		951CA9AE2CAC26BE0071D6EE /* (null) in Sources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,11 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01249D1D2CB2515F00CDE6EF /* DollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollView.swift; sourceTree = "<group>"; };
 		014185E52CAACD1D00D62294 /* Emotional_Wellness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotional_Wellness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		014185F62CAACD1E00D62294 /* Emotional_WellnessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emotional_WellnessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		014186002CAACD1E00D62294 /* Emotional_WellnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emotional_WellnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		025AE38C2CAED6B80079A085 /* QuitingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitingPage.swift; sourceTree = "<group>"; };
-		951CA9AD2CAC26BE0071D6EE /* ensuring user emotion .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ensuring user emotion .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -82,12 +81,11 @@
 		014185DC2CAACD1D00D62294 = {
 			isa = PBXGroup;
 			children = (
-				025AE38C2CAED6B80079A085 /* QuitingPage.swift */,
-				951CA9AD2CAC26BE0071D6EE /* ensuring user emotion .swift */,
 				014185E72CAACD1D00D62294 /* Emotional_Wellness */,
 				014185F92CAACD1E00D62294 /* Emotional_WellnessTests */,
 				014186032CAACD1E00D62294 /* Emotional_WellnessUITests */,
 				014185E62CAACD1D00D62294 /* Products */,
+				01249D1D2CB2515F00CDE6EF /* DollView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,8 +246,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				025AE38D2CAED6B80079A085 /* QuitingPage.swift in Sources */,
-				951CA9AE2CAC26BE0071D6EE /* ensuring user emotion .swift in Sources */,
+				951CA9AE2CAC26BE0071D6EE /* (null) in Sources */,
+				01249D1E2CB2515F00CDE6EF /* DollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
