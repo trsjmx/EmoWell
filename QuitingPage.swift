@@ -7,9 +7,9 @@ struct QuittingPage: View {
     @State private var cloudPositions: [CGSize] = []
     @State private var beePosition: CGSize = CGSize(width: -300, height: 0)
     @State private var showQuestion = false
- //   @State private var showButtons = false // New state for button visibility
-    @Environment(\.presentationMode) var presentationMode
-
+    @State private var rating: Int = 0 // Initialize the rating
+    @State private var showRatingView = false // State variable for rating view visibility
+    
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -26,75 +26,55 @@ struct QuittingPage: View {
                     }
                     
                     VStack {
-                        NavigationLink{
-                            IntroPage1()
-                        }
-                        
-                        label: {
-                            Image(systemName: "house")
-
-                        }
-                        HStack {
-                            Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(.black)
-                                    .padding()
-                                    .background(Color.white.opacity(0.7))
+                        HStack{
+                            NavigationLink {
+                                IntroPage1()
+                                    .navigationBarBackButtonHidden(true) // Hiding back button
+                            } label: {
+                                Image(systemName: "house")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                    .padding(10)
+                                    .foregroundColor(.black.opacity(0.8
+                                                                   ))
+                                    .background(Color.yellow.opacity(0.4))
                                     .clipShape(Circle())
                             }
-                        
+                            Spacer()
                         }
-                        .padding(.top, 40)
+                        .padding(.top, 20)
                         .padding(.leading, 20)
+                        Spacer()
                         
+    
                         ZStack {
                             // Bee
                             Image("smile")
                                 .resizable()
-                                    .frame(width: 200, height: 200) // Adjust this size to make the bee larger
-                                    .offset(beePosition)
-                                    .animation(.easeInOut(duration: 3), value: beePosition)
+                                .frame(width: 200, height: 200)
+                                .offset(beePosition)
+                                .animation(.easeInOut(duration: 3), value: beePosition)
                             
                             if showQuestion {
                                 TextBubbleView(text: "Have a good day XOXO")
-                                    .offset(x: beePosition.width + 135, y: beePosition.height - 70) // Adjusted offsets
+                                    .offset(x: beePosition.width + 135, y: beePosition.height - 70)
                                     .transition(.scale)
                             }
-
                         }
+                        .padding(.bottom, 100)
+                        .transition(.opacity)
                         
-    
-                        
-                        /* Buttons only appear after the bee and question bubble
-                        if showButtons {
-                            HStack(spacing: 20) {
-                                Button(action: {
-                                    print("Unfortunately pressed")
-                                }) {
-                                    Text("Unfortunately")
-                                        .padding()
-                                        .background(Color.white)
-                                        .foregroundColor(.black)
-                                        .cornerRadius(10)
-                                }
-                                
-                                Button(action: {
-                                    print("No pressed")
-                                }) {
-                                    Text("No")
-                                        .padding()
-                                        .background(Color.white)
-                                        .foregroundColor(.black)
-                                        .cornerRadius(10)
-                                }
-                            }*/
-                            .padding(.bottom, 100)
-                            .transition(.opacity) // Fade-in effect for buttons
-                            
+                        // Rating View
+                        if showRatingView {
+                            HStack {
+                                RatingView(rating: $rating)
+                                    .padding(.top, 40)
+                                    .transition(.scale) // Use scale transition for animation
+                            }
                         }
                     }
+                    Spacer()
                 }
                 .onAppear {
                     generateCloudPositions()
@@ -104,20 +84,23 @@ struct QuittingPage: View {
                             withAnimation {
                                 showQuestion = true
                             }
-                            /*// Delay button appearance until after the question bubble
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                withAnimation {
-                                    showButtons = true
-                                }
-                            }*/
                         }
                     }
+                    // Show the rating view after 5 seconds
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        withAnimation {
+                            showRatingView = true // Trigger rating view visibility
+                              
+                        }
+                      
+                        
+                    }
+                    
                 }
-          
-               
+                
             }
-            //.navigationBarHidden(true)
-            
+            .navigationViewStyle(StackNavigationViewStyle())
+        }
     }
     
     func generateCloudPositions() {
@@ -138,41 +121,33 @@ struct QuittingPage: View {
     func distance(_ a: CGSize, _ b: CGSize) -> CGFloat {
         return sqrt(pow(a.width - b.width, 2) + pow(a.height - b.height, 2))
     }
-    }
-
-
+}
 
 struct TextBubbleView: View {
     let text: String
     
     var body: some View {
         ZStack {
-            // Speech bubble shape
-           TextBubbleShape()
+            TextBubbleShape()
                 .fill(Color.white)
                 .frame(width: 200, height: 100)
             
-            // Question text inside the bubble
             Text(text)
                 .foregroundColor(.black)
                 .font(.system(size: 16, weight: .medium))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 10)
-                .frame(width: 180) // Adjust width to fit the text
+                .frame(width: 180)
         }
-        .frame(width: 200, height: 100)
-        .padding(.leading, 20) // Adjust the padding to position better near the bee
+        .padding(.leading, 20)
     }
 }
 
-// Custom shape for the speech bubble with a little tail
 struct TextBubbleShape: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-
         let cornerRadius: CGFloat = 20
 
-        // Draw the main bubble with rounded corners
         path.move(to: CGPoint(x: cornerRadius, y: 0))
         path.addLine(to: CGPoint(x: rect.width - cornerRadius, y: 0))
         path.addArc(center: CGPoint(x: rect.width - cornerRadius, y: cornerRadius),
@@ -186,8 +161,7 @@ struct TextBubbleShape: Shape {
         path.addLine(to: CGPoint(x: 0, y: cornerRadius))
         path.addArc(center: CGPoint(x: cornerRadius, y: cornerRadius),
                     radius: cornerRadius, startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
-        
-        // Draw the tail of the speech bubble
+
         path.move(to: CGPoint(x: rect.width / 5, y: rect.height))
         path.addLine(to: CGPoint(x: rect.width / 5 - 15, y: rect.height + 20))
         path.addLine(to: CGPoint(x: rect.width / 5 + 15, y: rect.height))
@@ -196,7 +170,48 @@ struct TextBubbleShape: Shape {
     }
 }
 
-struct QuitingPageView_Previews: PreviewProvider {
+// Star View
+struct StarView: View {
+    var isFilled: Bool
+    @State private var scale: CGFloat = 1.0 // Scale for animation
+    @State private var isFavorite = false
+
+    var body: some View {
+        Image(systemName: isFilled ? "star.fill" : "star")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .foregroundColor(isFilled ? .yellow : .gray.opacity(0.3))
+            .frame(width: 40, height: 40)
+            .scaleEffect(scale) // Apply scale effect
+            .symbolEffect(.bounce.down, value: isFavorite)
+            
+    }
+    
+}
+
+
+// Rating View
+struct RatingView: View {
+    @Binding var rating: Int
+    let maxRating: Int = 5
+    
+    var body: some View {
+        HStack {
+            ForEach(0..<maxRating, id: \.self) { index in
+                StarView(isFilled: index < rating)
+                    .onTapGesture {
+                        rating = index + 1
+                    }
+            }
+        }
+        .padding(.bottom,150)
+        
+    }
+    
+}
+
+// Preview
+struct QuittingPage_Previews: PreviewProvider {
     static var previews: some View {
         QuittingPage()
     }
