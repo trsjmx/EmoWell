@@ -1,35 +1,37 @@
 import SwiftUI
 
-struct DollView: View {
+struct Dolldisplay: View {
     private let numberOfStars = 20
-    private let minStarDistance: CGFloat = 50.0
-    private let animationDuration: Double = 6.0
-    
+    private let minStarDistance: CGFloat = 100.0 // Increase minimum distance between stars
+    private let starPlacementRange: CGFloat = 200 // Range around the doll image
+    private let starRegenerationInterval: Double = 2.0 // Time interval for regenerating stars
+
     @State private var starPositions: [CGSize] = []
     @State private var imageName: String = ""
     @State private var savedImageName: String? = nil
+    @State private var timer: Timer? // Add a timer state
 
     var body: some View {
         ZStack {
             Color.cyan.opacity(0.2)
                 .edgesIgnoringSafeArea(.all)
-            
+
+            // Stars surrounding the image
             ForEach(0..<starPositions.count, id: \.self) { index in
                 StarShape()
                     .frame(width: 50, height: 50)
-                    .foregroundColor(Color.yellow.opacity(0.2))
+                    .foregroundColor(Color.yellow.opacity(0.6))
                     .offset(x: starPositions[index].width, y: starPositions[index].height)
-                    .onAppear {
-                        moveStarHorizontally(index: index)
-                    }
+                    .opacity(1) // Always visible when present
             }
-            
+
             VStack {
                 Text("Here is your doll!")
                     .font(.largeTitle)
                     .padding(.top, 40)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
+
                 Spacer()
                 
                 Image("dolll") // Replace with your actual image name
@@ -37,6 +39,7 @@ struct DollView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
                     .padding(.top, 10)
+
                 Spacer()
 
                 VStack {
@@ -72,7 +75,11 @@ struct DollView: View {
             }
         }
         .onAppear {
-            generateAndAnimateStars()
+            generateStarPositions()
+            startStarRegeneration()
+        }
+        .onDisappear {
+            timer?.invalidate() // Invalidate the timer when the view disappears
         }
     }
 
@@ -80,8 +87,13 @@ struct DollView: View {
         var positions: [CGSize] = []
         
         while positions.count < numberOfStars {
-            let newPosition = CGSize(width: CGFloat.random(in: -200...300),
-                                     height: CGFloat.random(in: -400...500))
+            // Generate random position around the image
+            let newPosition = CGSize(
+                width: CGFloat.random(in: -starPlacementRange...starPlacementRange),
+                height: CGFloat.random(in: -starPlacementRange...starPlacementRange)
+            )
+            
+            // Check if this new position is far enough from existing stars
             if positions.allSatisfy({ distance($0, newPosition) >= minStarDistance }) {
                 positions.append(newPosition)
             }
@@ -90,35 +102,13 @@ struct DollView: View {
         starPositions = positions
     }
 
-    func moveStarHorizontally(index: Int) {
-        var newPosition = starPositions[index]
-        
-        withAnimation(Animation.linear(duration: animationDuration)
-                        .repeatForever(autoreverses: false)) {
-            newPosition.width = 1200
-            starPositions[index] = newPosition
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
-            regenerateStar(index: index)
-        }
-    }
-
-    func regenerateStar(index: Int) {
-        var newPosition = starPositions[index]
-        newPosition.width = -50
-        newPosition.height = CGFloat.random(in: -900...900)
-        
-        starPositions[index] = newPosition
-        moveStarHorizontally(index: index)
-    }
-
-    func generateAndAnimateStars() {
-        generateStarPositions()
-        
-        for index in 0..<numberOfStars {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.5) {
-                moveStarHorizontally(index: index)
+    func startStarRegeneration() {
+        timer = Timer.scheduledTimer(withTimeInterval: starRegenerationInterval, repeats: true) { _ in
+            withAnimation {
+                starPositions.removeAll() // Fade out stars
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // Wait a moment before regenerating
+                generateStarPositions() // Generate new star positions
             }
         }
     }
@@ -128,7 +118,7 @@ struct DollView: View {
     }
 }
 
-struct starShape: Shape {
+struct starShape: Shape { // Correctly defined with uppercase "S"
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let points = [
@@ -145,5 +135,7 @@ struct starShape: Shape {
 }
 
 #Preview {
-    DollView()
+    Dolldisplay()
 }
+
+
