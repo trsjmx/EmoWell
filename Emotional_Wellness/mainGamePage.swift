@@ -1,23 +1,5 @@
-//
-//  mainGamePage.swift
-//  Emotional_Wellness
-//
-//  Created by Linah on 04/04/1446 AH.
-//
-
 import SwiftUI
-import AVFoundation // For audio playback
-import UIKit // For haptics
-
-// Haptic manager class to handle haptic feedback
-class HapticManager {
-    static let shared = HapticManager()
-    
-    func createHapticFeedback() {
-        let generator = UIImpactFeedbackGenerator(style: .heavy)
-        generator.impactOccurred()
-    }
-}
+import AVFoundation // Import AVFoundation for audio playback
 
 struct MainGameLogicPage: View {
     @State private var tapCount1 = 0
@@ -63,17 +45,14 @@ struct MainGameLogicPage: View {
                         value: cloudOffsets[index]
                     )
             }
-
-            // Dolls and Angry Images
-            if !showDoll2 {
-                VStack {
-                    // Angry1 shown with Doll1, Doll2
-                    Image("angery1")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 180) // Fixed size for all dolls
-                        
-                    
+            
+                Image("bee1")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 90)
+            
+                // Dolls with the same size, one on top of the other
+                if !showDoll2 {
                     Image("doll1")
                         .resizable()
                         .frame(width: 250, height: 250) // Fixed size for all dolls
@@ -81,128 +60,83 @@ struct MainGameLogicPage: View {
                             tapCount1 += 1
                             if tapCount1 >= 3 {
                                 playSound()
-                                triggerHapticFeedback() // Haptic feedback on every 3rd tap
                                 showDoll2 = true
                             }
                         }
                 }
-            }
-
+               
             if showDoll2 && !showDoll3 {
-                VStack {
-                    Image("angery1") // Same angry1 shown with Doll2
-                        .resizable()
-                        .frame(width: 180)
-                    
-                    Image("doll2")
-                        .resizable()
-                        .frame(width: 250, height: 250)
-                        .onTapGesture {
-                            tapCount2 += 1
-                            if tapCount2 >= 3 {
-                                playSound()
-                                triggerHapticFeedback()
-                                showDoll3 = true
-                            }
+                Image("doll2")
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .onTapGesture {
+                        tapCount2 += 1
+                        if tapCount2 >= 3 {
+                            playSound()
+                            showDoll3 = true
                         }
-                }
+                    }
             }
 
             if showDoll3 && !showDoll4 {
-                VStack {
-                    Image("angery2") // Angry2 shown with Doll3, Doll4
-                        .resizable()
-                        .frame(width: 180)
-                    
-                    Image("doll3")
-                        .resizable()
-                        .frame(width: 250, height: 250)
-                        .onTapGesture {
-                            tapCount3 += 1
-                            if tapCount3 >= 3 {
-                                playSound()
-                                triggerHapticFeedback()
-                                showDoll4 = true
-                            }
+                Image("doll3")
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .onTapGesture {
+                        tapCount3 += 1
+                        if tapCount3 >= 3 {
+                            playSound()
+                            showDoll4 = true
                         }
-                }
+                    }
             }
 
             if showDoll4 && !showDoll5 {
-                VStack {
-                    Image("angery2") // Angry2 still shown with Doll4
-                        .resizable()
-                        .frame(width: 180)
-                    
-                    Image("doll4")
-                        .resizable()
-                        .frame(width: 250, height: 250)
-                        .onTapGesture {
-                            tapCount4 += 1
-                            if tapCount4 >= 3 {
-                                playSound()
-                                triggerHapticFeedback()
-                                showDoll5 = true
-                            }
+                Image("doll4")
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .onTapGesture {
+                        tapCount4 += 1
+                        if tapCount4 >= 3 {
+                            playSound()
+                            showDoll5 = true
                         }
-                }
+                    }
             }
 
             if showDoll5 && !showDoll6 {
-                VStack {
-                    Image("angery3") // Angry3 shown with Doll5, Doll6
-                        .resizable()
-                        .frame(width: 180)
-                    
-                    Image("doll5")
-                        .resizable()
-                        .frame(width: 250, height: 250)
-                        .onTapGesture {
-                            tapCount5 += 1
-                            if tapCount5 >= 3 {
-                                playSound()
-                                triggerHapticFeedback()
-                                showDoll6 = true
-                            }
+                Image("doll5")
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .onTapGesture {
+                        tapCount5 += 1
+                        if tapCount5 >= 3 {
+                            playSound()
+                            showDoll6 = true
                         }
-                }
+                    }
             }
 
             if showDoll6 && !showDoll7 {
-                VStack {
-                    Image("angery3") // Angry3 still shown with Doll6
-                        .resizable()
-                        .frame(width: 180)
-                    
-                    Image("doll6")
-                        .resizable()
-                        .frame(width: 250)
-                        .scaledToFit()
-                        .onTapGesture {
-                            tapCount6 += 1
-                            if tapCount6 >= 3 {
-                                playSound()
-                                triggerHapticFeedback()
-                                showDoll7 = true
-                            }
+                Image("doll6")
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .onTapGesture {
+                        tapCount6 += 1
+                        if tapCount6 >= 3 {
+                            playSound()
+                            showDoll7 = true
                         }
-                }
+                    }
             }
 
             if showDoll7 {
-                VStack {
-                    Image("angery4") // Angry4 shown with Doll7
-                        .resizable()
-                        .frame(width: 180)
-                    
-                    Image("doll7")
-                        .resizable()
-                        .frame(width: 250, height: 250)
-                        .onTapGesture {
-                            playSound()
-                            triggerHapticFeedback()
-                        }
-                }
+                Image("doll7")
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .onTapGesture {
+                        playSound()
+                    }
             }
         }
         .onAppear {
@@ -221,11 +155,6 @@ struct MainGameLogicPage: View {
         } catch {
             print("Error playing sound: \(error.localizedDescription)")
         }
-    }
-
-    // Trigger haptic feedback using HapticManager
-    func triggerHapticFeedback() {
-        HapticManager.shared.createHapticFeedback()
     }
 
     // Generate random cloud positions and initialize offsets for animation
@@ -265,7 +194,6 @@ struct MainGameLogicPage: View {
             }
         }
     }
-
 }
 
 #Preview {

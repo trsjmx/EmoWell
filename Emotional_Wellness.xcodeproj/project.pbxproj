@@ -33,7 +33,6 @@
 		014185E52CAACD1D00D62294 /* Emotional_Wellness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotional_Wellness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		014185F62CAACD1E00D62294 /* Emotional_WellnessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emotional_WellnessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		014186002CAACD1E00D62294 /* Emotional_WellnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emotional_WellnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E8D26DD2CB41674003579E1 /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -114,20 +113,11 @@
 		014185E62CAACD1D00D62294 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4E8D26DC2CB415D3003579E1 /* sound */,
 				014185E52CAACD1D00D62294 /* Emotional_Wellness.app */,
 				014185F62CAACD1E00D62294 /* Emotional_WellnessTests.xctest */,
 				014186002CAACD1E00D62294 /* Emotional_WellnessUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		4E8D26DC2CB415D3003579E1 /* sound */ = {
-			isa = PBXGroup;
-			children = (
-				4E8D26DD2CB41674003579E1 /* sound.mp3 */,
-			);
-			path = sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

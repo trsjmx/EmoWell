@@ -52,11 +52,11 @@ struct Dolldisplay: View {
                         NavigationLink(destination: ensuringUserEmotion()) {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.white)
-<<<<<<< HEAD
+
                                 .font(.system(size:20, weight: .bold))
-=======
+
                                 .font(.system(size: 13,weight: .bold))
->>>>>>> main
+
                                 .padding()
                                 .background(Color.yellow.opacity(0.8))
                                 .clipShape(Circle())
