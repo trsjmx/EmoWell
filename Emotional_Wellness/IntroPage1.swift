@@ -73,6 +73,9 @@ struct IntroPage1: View {
                 generateCloudPositions()
             }
         }
+        
+        .navigationBarBackButtonHidden(true) // Hiding back button
+        
     }
     
     // Generate random cloud positions ensuring they are not too close to each other
