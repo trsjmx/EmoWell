@@ -35,30 +35,9 @@
 		014186002CAACD1E00D62294 /* Emotional_WellnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emotional_WellnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		018C06062CB2BBF60074337F /* Exceptions for "Emotional_Wellness" folder in "Emotional_WellnessTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Dolldisplay.swift,
-			);
-			target = 014185F52CAACD1E00D62294 /* Emotional_WellnessTests */;
-		};
-		018C06072CB2BBF60074337F /* Exceptions for "Emotional_Wellness" folder in "Emotional_WellnessUITests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Dolldisplay.swift,
-			);
-			target = 014185FF2CAACD1E00D62294 /* Emotional_WellnessUITests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		014185E72CAACD1D00D62294 /* Emotional_Wellness */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				018C06062CB2BBF60074337F /* Exceptions for "Emotional_Wellness" folder in "Emotional_WellnessTests" target */,
-				018C06072CB2BBF60074337F /* Exceptions for "Emotional_Wellness" folder in "Emotional_WellnessUITests" target */,
-			);
 			path = Emotional_Wellness;
 			sourceTree = "<group>";
 		};
