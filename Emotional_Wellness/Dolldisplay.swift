@@ -30,7 +30,8 @@ struct Dolldisplay: View {
                     HStack {
                         NavigationLink(destination: ensuringUserEmotion()) {
                             Image(systemName: "chevron.left")
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
+                                .font(.system(size:20, weight: .bold))
                                 .padding()
                                 .background(Color.yellow.opacity(0.8))
                                 .clipShape(Circle())

@@ -38,7 +38,7 @@ struct QuittingPage: View {
                                     .padding(10)
                                     .foregroundColor(.black.opacity(0.8
                                                                    ))
-                                    .background(Color.yellow.opacity(0.4))
+                                    .background(Color.yellow.opacity(0.8))
                                     .clipShape(Circle())
                             }
                             Spacer()
