@@ -36,10 +36,11 @@ struct QuittingPage: View {
                                     .scaledToFit()
                                     .frame(width: 25, height: 25)
                                     .padding(10)
-                                    .foregroundColor(.black.opacity(0.8
+                                    .foregroundColor(.white.opacity(0.8
                                                                    ))
                                     .background(Color.yellow.opacity(0.8))
                                     .clipShape(Circle())
+                                    .font(.system(size:13 , weight: .bold))
                             }
                             Spacer()
                         }
@@ -69,6 +70,7 @@ struct QuittingPage: View {
                         if showRatingView {
                             HStack {
                                 RatingView(rating: $rating)
+                                
                                     .padding(.top, 40)
                                     .transition(.scale) // Use scale transition for animation
                             }
@@ -90,6 +92,7 @@ struct QuittingPage: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                         withAnimation {
                             showRatingView = true // Trigger rating view visibility
+                               // .cornerRadius(10)
                               
                         }
                       
@@ -177,10 +180,15 @@ struct StarView: View {
     @State private var isFavorite = false
 
     var body: some View {
+      
         Image(systemName: isFilled ? "star.fill" : "star")
+        
             .resizable()
+    
             .aspectRatio(contentMode: .fit)
+       
             .foregroundColor(isFilled ? .yellow : .gray.opacity(0.3))
+            
             .frame(width: 40, height: 40)
             .scaleEffect(scale) // Apply scale effect
             .symbolEffect(.bounce.down, value: isFavorite)
@@ -196,15 +204,26 @@ struct RatingView: View {
     let maxRating: Int = 5
     
     var body: some View {
-        HStack {
-            ForEach(0..<maxRating, id: \.self) { index in
-                StarView(isFilled: index < rating)
-                    .onTapGesture {
-                        rating = index + 1
-                    }
-            }
+        ZStack {
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color.white)
+              //.border(.gray, width: 0.5)
+                .shadow(radius: 3)
+                .frame(width: 300, height: 50)
+            HStack {
+                
+                ForEach(0..<maxRating, id: \.self) { index in
+                    StarView(isFilled: index < rating)
+                        .onTapGesture {
+                            rating = index + 1
+                        }
+                }
+        }
+        
+            .cornerRadius(12)
         }
         .padding(.bottom,150)
+      
         
     }
     
@@ -216,3 +235,4 @@ struct QuittingPage_Previews: PreviewProvider {
         QuittingPage()
     }
 }
+

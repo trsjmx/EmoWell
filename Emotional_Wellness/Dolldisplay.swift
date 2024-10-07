@@ -11,6 +11,7 @@ struct Dolldisplay: View {
     @State private var savedImageName: String? = nil
     @State private var timer: Timer?
     @State private var showConfirmation: Bool = false
+    @State private var isReadyToStart: Bool = false
 
     var body: some View {
         NavigationView {
@@ -26,12 +27,36 @@ struct Dolldisplay: View {
                 }
 
                 VStack {
+                    // Confirmation Notification
+                    if showConfirmation {
+                        Text("Name Saved Successfully")
+                            .foregroundColor(.black)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.green.opacity(0.5))
+                            .cornerRadius(8)
+                            .padding(.horizontal)
+                            .transition(.opacity)
+                            .animation(.easeInOut, value: showConfirmation)
+                            .onAppear {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    withAnimation {
+                                        showConfirmation = false
+                                    }
+                                }
+                            }
+                    }
+
                     // Back Button
                     HStack {
                         NavigationLink(destination: ensuringUserEmotion()) {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.white)
+<<<<<<< HEAD
                                 .font(.system(size:20, weight: .bold))
+=======
+                                .font(.system(size: 13,weight: .bold))
+>>>>>>> main
                                 .padding()
                                 .background(Color.yellow.opacity(0.8))
                                 .clipShape(Circle())
@@ -41,9 +66,9 @@ struct Dolldisplay: View {
                     .padding(.top, 40)
                     .padding(.leading, 20)
 
-                    Text("Here is your doll!")
+                    Text("Here is your doll !")
                         .font(.largeTitle)
-                        .padding(.top, 40)
+                        .padding(.top, 20)
                         .fontWeight(.bold)
                         .foregroundColor(.black.opacity(0.7))
 
@@ -55,22 +80,30 @@ struct Dolldisplay: View {
                         .frame(width: 200, height: 200)
                         .padding(.top, 10)
 
+                    // Display the saved name below the doll
+                    if let name = savedImageName {
+                        Text(name) // Just show the name directly
+                            .font(.headline)
+                            .padding(.top, 10)
+                            .foregroundColor(.black.opacity(0.8))
+                    }
+
                     Spacer()
 
                     VStack {
                         // Change Doll Name Text
-                        Text("Change doll name?")
+                        Text("Name it !")
                             .font(.largeTitle)
-                            .padding(.top, 40)
+                            .padding(.top, 20)
                             .fontWeight(.bold)
                             .foregroundColor(.black.opacity(0.7))
 
                         TextField("Enter doll Name", text: $imageName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
                             .frame(width: 250)
-                            .background(Color.white)
-                            .cornerRadius(8)
+                            .shadow(radius:3)
+                           // .background(Color.white)
+                          //  .cornerRadius(8)
 
                         // Button Row
                         HStack(spacing: 10) {
@@ -83,13 +116,15 @@ struct Dolldisplay: View {
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(width: 120)
-                                    .background(LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.yellow]),
-                                                               startPoint: .leading, endPoint: .trailing))
+                                    .background(.yellow.opacity(0.8))
                                     .cornerRadius(5)
                             }
 
                             // No Thanks Button
-                            NavigationLink(destination: ensuringUserEmotion()) {
+                            Button(action: {
+                                savedImageName = nil // Clear the saved name
+                                isReadyToStart = true // Show the start button
+                            }) {
                                 Text("No Thanks")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
@@ -101,18 +136,22 @@ struct Dolldisplay: View {
                         }
                         .padding(.top, 10)
 
-                        // Confirmation Message
-                        if showConfirmation {
-                            VStack {
-                                Text("Saved Name \(savedImageName ?? "None")")
+                        // Start Button
+                        if isReadyToStart {
+                            NavigationLink(destination: NameSavedView(savedName: savedImageName)) {
+                                Text("Start")
                                     .fontWeight(.bold)
-                                    .padding()
                                     .foregroundColor(.white)
-                                    .background(Color.green.opacity(0.7)) // Adjusted opacity
-                                    .cornerRadius(8)
-                                    .padding(.top, 10)
+                                    .padding()
+                                    .frame(width: 120)
+                                    .background(Color.blue.opacity(0.5)) // Light blue fill
+                                    .cornerRadius(30) // Oval shape
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 30)
+                                            .stroke(Color.blue, lineWidth: 2) // Dark blue border
+                                    )
+                                    .padding(.top, 20)
                             }
-                            .transition(.opacity) // Use opacity transition
                         }
                     }
                     .padding(.bottom, 30)
@@ -131,13 +170,7 @@ struct Dolldisplay: View {
     func saveName() {
         savedImageName = imageName
         showConfirmation = true
-        
-        // Hide confirmation after 2 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            withAnimation {
-                showConfirmation = false
-            }
-        }
+        isReadyToStart = true
     }
 
     func generateStarPositions() {
@@ -203,7 +236,7 @@ struct NameSavedView: View {
                 .font(.largeTitle)
                 .padding()
             if let name = savedName {
-                Text("Saved doll Name: \(name)")
+                Text(name) // Just show the name directly
             } else {
                 Text("No name was saved.")
             }
@@ -218,3 +251,4 @@ struct DollDisplay_Previews: PreviewProvider {
         Dolldisplay()
     }
 }
+
