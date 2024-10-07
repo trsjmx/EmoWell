@@ -40,6 +40,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Dolldisplay.swift,
+				endgame.swift,
 			);
 			target = 014185F52CAACD1E00D62294 /* Emotional_WellnessTests */;
 		};
@@ -47,6 +48,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Dolldisplay.swift,
+				endgame.swift,
 			);
 			target = 014185FF2CAACD1E00D62294 /* Emotional_WellnessUITests */;
 		};
