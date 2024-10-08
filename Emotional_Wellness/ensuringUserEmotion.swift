@@ -16,7 +16,7 @@ struct ensuringUserEmotion: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        NavigationStack {
+       
             ZStack {
                 Color.cyan.opacity(0.2)
                     .edgesIgnoringSafeArea(.all)
@@ -121,7 +121,7 @@ struct ensuringUserEmotion: View {
             }
             
             
-        }
+        
        
     }
         func generateCloudPositions() {
