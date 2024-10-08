@@ -16,6 +16,9 @@ struct Dolldisplay: View {
     var body: some View {
         
             ZStack {
+                NavigationLink(destination: IntroPage1())  {}
+                .navigationBarBackButtonHidden(true) // Hiding back button
+                
                 Color.cyan.opacity(0.2)
                     .edgesIgnoringSafeArea(.all)
 

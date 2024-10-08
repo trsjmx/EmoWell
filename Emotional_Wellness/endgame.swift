@@ -11,7 +11,7 @@ struct EndPage: View {
     @State private var timer: Timer?
 
     var body: some View {
-        NavigationView {
+        
             ZStack {
                 // Background color
                 Color.white
@@ -29,11 +29,12 @@ struct EndPage: View {
                 VStack(spacing: 5) {
                     
                     Text("END GAME")
-                        .font(.system(size: 70)) // Increased font size
+                        .font(.system(size: 50)) // Increased size
                         .fontWeight(.bold)
                         .foregroundColor(.black)
-                        .padding(.top, 200)
-                    Text("Doll name has fulfilled its duty. Hope it made you feel better.")
+                        .padding(.top, 50) // Add some padding from the top
+                        .padding()
+                    Text(" Amal has fulfilled its duty, Hope it made you feel better!")
                         .font(.system(size: 16)) // Smaller font size for the bottom text
                         .fontWeight(.bold)
                         .foregroundColor(.black)
@@ -56,7 +57,7 @@ struct EndPage: View {
             .onDisappear {
                 timer?.invalidate()
             }
-        }
+        
     }
     
     // Star generation logic

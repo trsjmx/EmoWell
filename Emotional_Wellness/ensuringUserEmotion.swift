@@ -39,6 +39,7 @@ struct ensuringUserEmotion: View {
                                 .background(Color.yellow.opacity(0.8))
                                 .clipShape(Circle())
                         }
+                        .navigationBarBackButtonHidden(true) // Hiding back button
                         
                         Spacer()
                     }
@@ -53,7 +54,7 @@ struct ensuringUserEmotion: View {
                             .resizable()
                             .frame(width: 200, height: 200) // Adjust this size to make the bee larger
                             .offset(beePosition)
-                            .animation(.easeInOut(duration: 2), value: beePosition)
+                            .animation(.easeInOut(duration: 1.5), value: beePosition)
                         
                         if showQuestion {
                             SpeechBubbleView(text: "You seem angry today. Aren't you?")
@@ -101,12 +102,11 @@ struct ensuringUserEmotion: View {
                 }
             }
             
-            .navigationBarBackButtonHidden(true) // Hide the default back button
             .onAppear {
                 generateCloudPositions()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     beePosition = CGSize(width: -50, height: 0)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         withAnimation {
                             showQuestion = true
                         }

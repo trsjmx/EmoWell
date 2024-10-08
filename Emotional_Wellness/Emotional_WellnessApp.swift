@@ -11,7 +11,9 @@ import SwiftUI
 struct Emotional_WellnessApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Splash_screen()
+            
         }
+        
     }
 }

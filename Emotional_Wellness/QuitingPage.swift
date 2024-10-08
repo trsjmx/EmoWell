@@ -11,8 +11,7 @@ struct QuittingPage: View {
     @State private var showRatingView = false // State variable for rating view visibility
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
+        
                 ZStack {
                     Color.cyan.opacity(0.2)
                         .edgesIgnoringSafeArea(.all)
@@ -101,9 +100,9 @@ struct QuittingPage: View {
                     
                 }
                 
-            }
+            
             .navigationViewStyle(StackNavigationViewStyle())
-        }
+        
     }
     
     func generateCloudPositions() {

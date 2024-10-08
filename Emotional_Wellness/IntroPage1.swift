@@ -54,6 +54,7 @@ struct IntroPage1: View {
                         NavigationLink(destination: ensuringUserEmotion()) {
                             moodImageView(imageName: "angry", selectedImage: $selectedImage)
                         }
+                      
                         
                         moodImageView(imageName: "sad", selectedImage: $selectedImage)
                         moodImageView(imageName: "vain", selectedImage: $selectedImage)
@@ -73,7 +74,6 @@ struct IntroPage1: View {
                 generateCloudPositions()
             }
         }
-        
         .navigationBarBackButtonHidden(true) // Hiding back button
         
     }
