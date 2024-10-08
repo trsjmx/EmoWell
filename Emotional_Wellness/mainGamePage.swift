@@ -2,12 +2,8 @@ import SwiftUI
 import AVFoundation // Import AVFoundation for audio playback
 
 struct MainGameLogicPage: View {
-    @State private var tapCount1 = 0
-    @State private var tapCount2 = 0
-    @State private var tapCount3 = 0
-    @State private var tapCount4 = 0
-    @State private var tapCount5 = 0
-    @State private var tapCount6 = 0
+    @State private var tapCount = 0
+
 
     @State private var showDoll2 = false
     @State private var showDoll3 = false
@@ -15,6 +11,10 @@ struct MainGameLogicPage: View {
     @State private var showDoll5 = false
     @State private var showDoll6 = false
     @State private var showDoll7 = false
+
+    @State private var showT2 = false // حالة t2
+    @State private var showT3 = false // حالة t3
+    @State private var showT4 = false // حالة t4
 
     private let numberOfClouds = 10
     private let cloudSpeed: Double = 10 // Speed of clouds moving
@@ -31,7 +31,7 @@ struct MainGameLogicPage: View {
             // Light blue sky background
             Color.cyan.opacity(0.2)
                 .edgesIgnoringSafeArea(.all)
-
+            
             // Clouds group - Fixed moderate size for all clouds
             ForEach(0..<cloudPositions.count, id: \.self) { index in
                 Image(systemName: "cloud.fill")
@@ -45,11 +45,83 @@ struct MainGameLogicPage: View {
                         value: cloudOffsets[index]
                     )
             }
+            VStack{
+                // Add t1 image above the dolls
+                if tapCount <= 2  {
+                    Image("t1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300) // Bigger size for t1
+                        .offset(y: -250)
+                        .onTapGesture {
+                            withAnimation{
+                                tapCount += 1
+                                if tapCount >= 3 {
+                                    playSound()
+                                    showDoll2 = true
+                                    showT2 = true
+                                    
+                                }
+                            }
+                        }
+                }
+                if tapCount > 3 && tapCount <= 6 {
+                    Image("t2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300)
+                        .offset(y: -250)
+                        .onTapGesture {
+                            withAnimation {
+                                tapCount += 1
+                                if tapCount >= 6{
+                                    playSound()
+                                    showT2 = true
+                                    
+                                }
+                            }
+                        }
+                }
+                if  tapCount > 7 && tapCount <= 10{
+                    Image("t3")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300)
+                        .offset(y: -250)
+                        .onTapGesture {
+                            withAnimation{
+                                tapCount += 1
+                                if tapCount >= 9 {
+                                    playSound()
+                                    showT3 = true
+                                    
+                                }
+                            }
+                        }
+                }
+                if tapCount > 11 && tapCount <= 14  {
+                    Image("t4")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300)
+                        .offset(y: -250)
+                        .onTapGesture {
+                            withAnimation{
+                                tapCount += 1
+                                if tapCount >= 12{
+                                    playSound()
+                                    showT4 = true
+                                    
+                                }
+                            }
+                        }
+                }
+                
+               
+            }
+            .padding(.bottom,200)
             
-                Image("bee1")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 90)
+            
             
                 // Dolls with the same size, one on top of the other
                 if !showDoll2 {
@@ -57,85 +129,103 @@ struct MainGameLogicPage: View {
                         .resizable()
                         .frame(width: 250, height: 250) // Fixed size for all dolls
                         .onTapGesture {
-                            tapCount1 += 1
-                            if tapCount1 >= 3 {
-                                playSound()
-                                showDoll2 = true
+                            withAnimation{
+                                tapCount += 1
+                                if tapCount <= 2 {
+                                    playSound()
+                                    showDoll2 = true
+                                }
                             }
                         }
                 }
-               
+                
             if showDoll2 && !showDoll3 {
                 Image("doll2")
                     .resizable()
                     .frame(width: 250, height: 250)
                     .onTapGesture {
-                        tapCount2 += 1
-                        if tapCount2 >= 3 {
-                            playSound()
-                            showDoll3 = true
+                        withAnimation{
+                            tapCount += 1
+                            if tapCount == 4 {
+                                playSound()
+                                showDoll3 = true
+                            }
                         }
                     }
             }
-
+                
             if showDoll3 && !showDoll4 {
                 Image("doll3")
                     .resizable()
                     .frame(width: 250, height: 250)
                     .onTapGesture {
-                        tapCount3 += 1
-                        if tapCount3 >= 3 {
-                            playSound()
-                            showDoll4 = true
+                        withAnimation{
+                            tapCount += 1
+                            if tapCount == 6 {
+                                playSound()
+                                showDoll4 = true
+                            }
+                            
                         }
                     }
             }
-
-            if showDoll4 && !showDoll5 {
-                Image("doll4")
-                    .resizable()
-                    .frame(width: 250, height: 250)
-                    .onTapGesture {
-                        tapCount4 += 1
-                        if tapCount4 >= 3 {
-                            playSound()
-                            showDoll5 = true
+                
+                if showDoll4 && !showDoll5 {
+                    Image("doll4")
+                        .resizable()
+                        .frame(width: 250, height: 250)
+                        .onTapGesture {
+                            withAnimation{
+                                tapCount += 1
+                                if tapCount == 8 {
+                                    playSound()
+                                    showDoll5 = true
+                                }
+                                
+                            }
                         }
-                    }
-            }
-
+                }
+                
             if showDoll5 && !showDoll6 {
                 Image("doll5")
                     .resizable()
                     .frame(width: 250, height: 250)
                     .onTapGesture {
-                        tapCount5 += 1
-                        if tapCount5 >= 3 {
-                            playSound()
-                            showDoll6 = true
+                        withAnimation{
+                            tapCount += 1
+                            if tapCount == 10 {
+                                playSound()
+                                showDoll6 = true
+                            }
                         }
                     }
             }
-
             if showDoll6 && !showDoll7 {
                 Image("doll6")
                     .resizable()
                     .frame(width: 250, height: 250)
                     .onTapGesture {
-                        tapCount6 += 1
-                        if tapCount6 >= 3 {
-                            playSound()
-                            showDoll7 = true
+                        withAnimation{
+                            tapCount += 1
+                            if tapCount == 12 {
+                                playSound()
+                                showDoll7 = true
+                            }
                         }
                     }
             }
-
             if showDoll7 {
                 Image("doll7")
                     .resizable()
                     .frame(width: 250, height: 250)
                     .onTapGesture {
-                        playSound()
+                        withAnimation{
+                            tapCount += 1
+                            if tapCount == 14 {
+                                playSound()
+                                showDoll7 = true
+                            }
+                        }
                     }
             }
         }
@@ -199,3 +289,4 @@ struct MainGameLogicPage: View {
 #Preview {
     MainGameLogicPage()
 }
+
