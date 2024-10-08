@@ -14,7 +14,7 @@ struct Dolldisplay: View {
     @State private var isReadyToStart: Bool = false
 
     var body: some View {
-        NavigationView {
+        
             ZStack {
                 Color.cyan.opacity(0.2)
                     .edgesIgnoringSafeArea(.all)
@@ -53,20 +53,26 @@ struct Dolldisplay: View {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.white)
 
+
                                 .font(.system(size:20, weight: .bold))
 
                                 .font(.system(size: 13,weight: .bold))
 
+
+                                .font(.system(size: 20, weight: .bold))
+
                                 .padding()
                                 .background(Color.yellow.opacity(0.8))
                                 .clipShape(Circle())
+                                .navigationBarBackButtonHidden(true) // Hiding back button
                         }
+                       
                         Spacer()
                     }
                     .padding(.top, 40)
                     .padding(.leading, 20)
 
-                    Text("Here is your doll !")
+                    Text("Here is your doll!")
                         .font(.largeTitle)
                         .padding(.top, 20)
                         .fontWeight(.bold)
@@ -77,12 +83,12 @@ struct Dolldisplay: View {
                     Image("dolll") // Replace with your actual image name
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200)
+                        .frame(width: 250, height: 250)
                         .padding(.top, 10)
 
                     // Display the saved name below the doll
                     if let name = savedImageName {
-                        Text(name) // Just show the name directly
+                        Text(name)
                             .font(.headline)
                             .padding(.top, 10)
                             .foregroundColor(.black.opacity(0.8))
@@ -92,7 +98,7 @@ struct Dolldisplay: View {
 
                     VStack {
                         // Change Doll Name Text
-                        Text("Name it !")
+                        Text("Name it!")
                             .font(.largeTitle)
                             .padding(.top, 20)
                             .fontWeight(.bold)
@@ -101,9 +107,7 @@ struct Dolldisplay: View {
                         TextField("Enter doll Name", text: $imageName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 250)
-                            .shadow(radius:3)
-                           // .background(Color.white)
-                          //  .cornerRadius(8)
+                            .shadow(radius: 3)
 
                         // Button Row
                         HStack(spacing: 10) {
@@ -138,17 +142,17 @@ struct Dolldisplay: View {
 
                         // Start Button
                         if isReadyToStart {
-                            NavigationLink(destination: NameSavedView(savedName: savedImageName)) {
+                            NavigationLink(destination: MainGameLogicPage()) { // Navigate to MainGameLogicPage
                                 Text("Start")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(width: 120)
-                                    .background(Color.blue.opacity(0.5)) // Light blue fill
-                                    .cornerRadius(30) // Oval shape
+                                    .background(Color.blue.opacity(0.5))
+                                    .cornerRadius(30)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 30)
-                                            .stroke(Color.blue, lineWidth: 2) // Dark blue border
+                                            .stroke(Color.blue, lineWidth: 2)
                                     )
                                     .padding(.top, 20)
                             }
@@ -164,7 +168,8 @@ struct Dolldisplay: View {
             .onDisappear {
                 timer?.invalidate()
             }
-        }
+        
+        
     }
 
     func saveName() {

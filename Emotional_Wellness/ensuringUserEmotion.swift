@@ -16,7 +16,7 @@ struct ensuringUserEmotion: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        NavigationView {
+       
             ZStack {
                 Color.cyan.opacity(0.2)
                     .edgesIgnoringSafeArea(.all)
@@ -31,10 +31,7 @@ struct ensuringUserEmotion: View {
                 
                 VStack {
                     HStack {
-                        Button(action: {
-                            // Dismiss the view and go back to the home page
-                            presentationMode.wrappedValue.dismiss()
-                        }) {
+                        NavigationLink(destination: IntroPage1()) {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.white)
                                 .font(.system(size:20, weight: .bold))
@@ -80,14 +77,12 @@ struct ensuringUserEmotion: View {
                                     .frame(width: 120)
                                     .background(Color.yellow.opacity(0.8))
                                     .cornerRadius(5)
+                                    .navigationBarBackButtonHidden(true) // Hiding back button
                                 
                             }
-                            .navigationBarBackButtonHidden(true) // Hiding back button
                             
-                            Button(action: {
-                                // Dismiss the view and go back to the home page
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
+                            
+                            NavigationLink(destination: IntroPage1())  {
                                 Text("No")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
@@ -126,7 +121,8 @@ struct ensuringUserEmotion: View {
             }
             
             
-        }
+        
+       
     }
         func generateCloudPositions() {
             var positions: [CGSize] = []
