@@ -14,7 +14,7 @@ struct Dolldisplay: View {
     @State private var isReadyToStart: Bool = false
 
     var body: some View {
-        NavigationView {
+        
             ZStack {
                 Color.cyan.opacity(0.2)
                     .edgesIgnoringSafeArea(.all)
@@ -52,15 +52,15 @@ struct Dolldisplay: View {
                         NavigationLink(destination: ensuringUserEmotion()) {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.white)
-<<<<<<< HEAD
+
 
                                 .font(.system(size:20, weight: .bold))
 
                                 .font(.system(size: 13,weight: .bold))
 
-=======
+
                                 .font(.system(size: 20, weight: .bold))
->>>>>>> main
+
                                 .padding()
                                 .background(Color.yellow.opacity(0.8))
                                 .clipShape(Circle())
@@ -168,7 +168,7 @@ struct Dolldisplay: View {
             .onDisappear {
                 timer?.invalidate()
             }
-        }
+        
         
     }
 
