@@ -11,12 +11,12 @@ struct EndPage: View {
     @State private var timer: Timer?
 
     var body: some View {
-        
+        NavigationStack{
             ZStack {
                 // Background color
                 Color.white
                     .edgesIgnoringSafeArea(.all)
-
+                
                 // Stars
                 ForEach(0..<starPositions.count, id: \.self) { index in
                     CustomStarShape()
@@ -40,7 +40,7 @@ struct EndPage: View {
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity) // Ensures it spans the width
-                  
+                    
                     // Display the GIF here using WebView
                     WebView(gifName: "Untitled design-2") // Your GIF file name here
                         .frame(width: 500, height: 260) // Adjust size as needed
@@ -50,6 +50,8 @@ struct EndPage: View {
                 .position(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 3) // Centered vertically
                 
             }
+        }
+        .navigationBarBackButtonHidden(true) // Hiding back button
             .onAppear {
                 generateStarPositions()
                 startStarRegeneration()

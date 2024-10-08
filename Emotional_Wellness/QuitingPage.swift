@@ -11,72 +11,74 @@ struct QuittingPage: View {
     @State private var showRatingView = false // State variable for rating view visibility
     
     var body: some View {
-        
-                ZStack {
-                    Color.cyan.opacity(0.2)
-                        .edgesIgnoringSafeArea(.all)
-                    
-                    ForEach(0..<cloudPositions.count, id: \.self) { index in
-                        Image(systemName: "cloud.fill")
-                            .resizable()
-                            .frame(width: CGFloat.random(in: 100...200), height: CGFloat.random(in: 60...120))
-                            .foregroundColor(.white)
-                            .offset(cloudPositions[index])
-                    }
-                    
-                    VStack {
-                        HStack{
-                            NavigationLink {
-                                IntroPage1()
-                                    .navigationBarBackButtonHidden(true) // Hiding back button
-                            } label: {
-                                Image(systemName: "house")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 25, height: 25)
-                                    .padding(10)
-                                    .foregroundColor(.white.opacity(0.8
-                                                                   ))
-                                    .background(Color.yellow.opacity(0.8))
-                                    .clipShape(Circle())
-                                    .font(.system(size:13 , weight: .bold))
-                            }
-                            Spacer()
-                        }
-                        .padding(.top, 20)
-                        .padding(.leading, 20)
-                        Spacer()
-                        
-    
-                        ZStack {
-                            // Bee
-                            Image("smile")
-                                .resizable()
-                                .frame(width: 200, height: 200)
-                                .offset(beePosition)
-                                .animation(.easeInOut(duration: 3), value: beePosition)
-                            
-                            if showQuestion {
-                                TextBubbleView(text: "Have a good day XOXO")
-                                    .offset(x: beePosition.width + 135, y: beePosition.height - 70)
-                                    .transition(.scale)
-                            }
-                        }
-                        .padding(.bottom, 100)
-                        .transition(.opacity)
-                        
-                        // Rating View
-                        if showRatingView {
-                            HStack {
-                                RatingView(rating: $rating)
-                                
-                                    .padding(.top, 40)
-                                    .transition(.scale) // Use scale transition for animation
-                            }
-                        }
-                    }
-                    Spacer()
+        NavigationStack{
+            ZStack {
+                Color.cyan.opacity(0.2)
+                    .edgesIgnoringSafeArea(.all)
+                
+                ForEach(0..<cloudPositions.count, id: \.self) { index in
+                    Image(systemName: "cloud.fill")
+                        .resizable()
+                        .frame(width: CGFloat.random(in: 100...200), height: CGFloat.random(in: 60...120))
+                        .foregroundColor(.white)
+                        .offset(cloudPositions[index])
                 }
+                
+                VStack {
+                    HStack{
+                        NavigationLink {
+                            IntroPage1()
+                                .navigationBarBackButtonHidden(true) // Hiding back button
+                        } label: {
+                            Image(systemName: "house")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                                .padding(10)
+                                .foregroundColor(.white.opacity(0.8
+                                                               ))
+                                .background(Color.yellow.opacity(0.8))
+                                .clipShape(Circle())
+                                .font(.system(size:13 , weight: .bold))
+                        }
+                        Spacer()
+                    }
+                    .padding(.top, 20)
+                    .padding(.leading, 20)
+                    Spacer()
+                    
+                    
+                    ZStack {
+                        // Bee
+                        Image("smile")
+                            .resizable()
+                            .frame(width: 200, height: 200)
+                            .offset(beePosition)
+                            .animation(.easeInOut(duration: 3), value: beePosition)
+                        
+                        if showQuestion {
+                            TextBubbleView(text: "Have a good day XOXO")
+                                .offset(x: beePosition.width + 135, y: beePosition.height - 70)
+                                .transition(.scale)
+                        }
+                    }
+                    .padding(.bottom, 100)
+                    .transition(.opacity)
+                    
+                    // Rating View
+                    if showRatingView {
+                        HStack {
+                            RatingView(rating: $rating)
+                            
+                                .padding(.top, 40)
+                                .transition(.scale) // Use scale transition for animation
+                        }
+                    }
+                }
+                Spacer()
+            }
+        }
+        .navigationBarBackButtonHidden(true) // Hiding back button
                 .onAppear {
                     generateCloudPositions()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

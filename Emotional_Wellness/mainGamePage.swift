@@ -30,7 +30,7 @@ struct MainGameLogicPage: View {
     
     var body: some View {
         
-       
+        NavigationStack{
             ZStack {
                 
                 NavigationLink(destination: IntroPage1())  {}
@@ -41,7 +41,7 @@ struct MainGameLogicPage: View {
                     .navigationDestination(isPresented: $navigateToEndPage) {
                         LinkPages() // The page to navigate to
                     }
-                  
+                
                 
                 // Clouds group - Fixed moderate size for all clouds
                 ForEach(0..<cloudPositions.count, id: \.self) { index in
@@ -241,12 +241,15 @@ struct MainGameLogicPage: View {
                         }
                 }
             }
+            
+        }
+            .navigationBarBackButtonHidden(true) // Hiding back button
             .onAppear {
                 setupCloudPositions()
                 animateClouds()
             }
         
-        .navigationBarBackButtonHidden(true) // Hiding back button
+        
         }
         
         
