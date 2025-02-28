@@ -34,33 +34,49 @@ struct IntroPage1: View {
                 }
                 
                 // Title, subtitle, and images in a vertical stack
-                VStack {
+                VStack (alignment: .center, spacing: 20){
                     // Enlarged text at the top of the screen
                     Text("I Feel You!")
-                        .font(.system(size: 50)) // Increased size
+                        .font(.system(size: 50, weight: .bold, design: .rounded))
                         .fontWeight(.bold)
-                        .foregroundColor(.black)
+                        .foregroundColor(.black.opacity(0.8))
                         .padding(.top, 50) // Add some padding from the top
-                        .padding()
+                       
                     Text("Your mood now is")
-                        .font(.title2)
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
                         .foregroundColor(.gray)
                         .padding(.bottom, 20)
                     
                     
                     // Images in a vertical stack with interaction
-                    VStack(spacing: 20) { // Add spacing between the images
+                    VStack(spacing: 25) { // Add spacing between the images
                         
                         NavigationLink(destination: ensuringUserEmotion()) {
                             moodImageView(imageName: "angry", selectedImage: $selectedImage)
                         }
                       
                         
-                        moodImageView(imageName: "sad", selectedImage: $selectedImage)
-                        moodImageView(imageName: "vain", selectedImage: $selectedImage)
-                        
-                  
+                        ZStack {
+                            moodImageView(imageName: "sad", selectedImage: $selectedImage)
+                                .blur(radius: 3.0) // Blur effect for a disabled look
 
+                            Image(systemName: "lock.fill") // Lock icon
+                                .foregroundColor(.white)
+                                .font(.system(size: 40))
+                                .shadow(color: .black, radius: 10, x: 5, y: 5) // Add shadow with color, radius, and offset
+                        }
+                        
+                        ZStack {
+                            moodImageView(imageName: "vain", selectedImage: $selectedImage)
+                                .blur(radius: 3.0) // Blur effect for a disabled look
+
+                            Image(systemName: "lock.fill") // Lock icon
+                                .foregroundColor(.white)
+                                .font(.system(size: 40))
+                                .shadow(color: .black, radius: 10, x: 5, y: 5) // Add shadow with color, radius, and offset
+                        }
+                                                
+                                        
                             
                     }
                     

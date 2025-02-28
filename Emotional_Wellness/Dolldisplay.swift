@@ -30,15 +30,18 @@ struct Dolldisplay: View {
                 }
 
                 VStack {
+                    
                     // Confirmation Notification
                     if showConfirmation {
-                        Text("Name Saved Successfully")
-                            .foregroundColor(.black)
+                        Text("name saved successfully")
+                            .font(.system(size: 20, weight: .regular, design: .rounded))
+                            .foregroundColor(.black.opacity(0.7))
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(Color.green.opacity(0.5))
                             .cornerRadius(8)
                             .padding(.horizontal)
+                            .padding(.top,100)
                             .transition(.opacity)
                             .animation(.easeInOut, value: showConfirmation)
                             .onAppear {
@@ -76,42 +79,44 @@ struct Dolldisplay: View {
                     .padding(.leading, 20)
 
                     Text("Here is your doll!")
-                        .font(.largeTitle)
+                        .font(.system(size: 35, weight: .bold, design: .rounded))
                         .padding(.top, 20)
                         .fontWeight(.bold)
                         .foregroundColor(.black.opacity(0.7))
 
-                    Spacer()
-
+                    // Display the saved name below the doll
+                    if let name = savedImageName {
+                        Text(name)
+                            .font(.system(size: 30, weight: .bold, design: .rounded))
+                            .padding(.top, 10)
+                            .foregroundColor(.black.opacity(0.7))
+                    }
                     Image("dolll") // Replace with your actual image name
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 250, height: 250)
-                        .padding(.top, 10)
+                        .padding(.top, 8)
 
-                    // Display the saved name below the doll
-                    if let name = savedImageName {
-                        Text(name)
-                            .font(.headline)
-                            .padding(.top, 10)
-                            .foregroundColor(.black.opacity(0.8))
-                    }
+                    
 
                     Spacer()
 
-                    VStack {
+                    VStack (alignment: .center, spacing: (20)){
                         // Change Doll Name Text
-                        Text("Name it!")
-                            .font(.largeTitle)
-                            .padding(.top, 20)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black.opacity(0.7))
+                          Text("Give it a name!")
+                              .font(.system(size: 30, weight: .bold, design: .rounded))
+                              .foregroundColor(.black.opacity(0.7))
 
-                        TextField("Enter doll Name", text: $imageName)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 250)
-                            .shadow(radius: 3)
-
+                          // TextField with Custom Styling
+                          TextField("Enter your doll name", text: $imageName)
+                            .font(.system(size: 16, weight: .regular, design: .rounded))
+                              .padding() // Padding inside the text field
+                              .frame(width:252,height: 50)
+                              
+                              .background(Color.white) // Background color
+                              .cornerRadius(10) // Rounded corners
+                              .shadow(radius: 3) // Optional: Add shadow
+                            
                         // Button Row
                         HStack(spacing: 10) {
                             // Save Button
@@ -119,7 +124,7 @@ struct Dolldisplay: View {
                                 saveName()
                             }) {
                                 Text("Save")
-                                    .fontWeight(.bold)
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(width: 120)
@@ -133,7 +138,7 @@ struct Dolldisplay: View {
                                 isReadyToStart = true // Show the start button
                             }) {
                                 Text("No Thanks")
-                                    .fontWeight(.bold)
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(width: 120)
@@ -161,7 +166,7 @@ struct Dolldisplay: View {
                             }
                         }
                     }
-                    .padding(.bottom, 30)
+                    .padding(.bottom, 50)
                 }
             }
             .onAppear {

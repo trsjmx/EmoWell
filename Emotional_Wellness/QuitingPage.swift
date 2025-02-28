@@ -135,10 +135,11 @@ struct TextBubbleView: View {
             TextBubbleShape()
                 .fill(Color.white)
                 .frame(width: 200, height: 100)
+                .shadow(color: .gray, radius: 5, x: 0, y: 5)
             
             Text(text)
                 .foregroundColor(.black)
-                .font(.system(size: 16, weight: .medium))
+                .font(.system(size: 16, weight: .medium, design: .rounded))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 10)
                 .frame(width: 180)

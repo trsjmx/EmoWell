@@ -29,13 +29,12 @@ struct EndPage: View {
                 VStack(spacing: 5) {
                     
                     Text("END GAME")
-                        .font(.system(size: 50)) // Increased size
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
+                        .font(.system(size: 50, weight: .bold, design: .rounded))
+                        .foregroundColor(.black.opacity(0.7))
                         .padding(.top, 50) // Add some padding from the top
                         .padding()
                     Text(" Amal has fulfilled its duty, Hope it made you feel better!")
-                        .font(.system(size: 16)) // Smaller font size for the bottom text
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
@@ -51,7 +50,7 @@ struct EndPage: View {
                 
             }
         }
-        .navigationBarBackButtonHidden(true) // Hiding back button
+        .navigationBarBackButtonHidden(true) // Hiding back buttonÍ›
             .onAppear {
                 generateStarPositions()
                 startStarRegeneration()

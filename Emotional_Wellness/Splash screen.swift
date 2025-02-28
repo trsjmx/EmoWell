@@ -28,8 +28,8 @@ struct Splash_screen: View {
                         .opacity(fadeInOut ? 1 : 0) // Fade in effect
                     
                     // Text below the icon
-                    Text("Emotional Wellness")
-                        .font(.largeTitle)
+                    Text("EmoWell")
+                        .font(.system(size: 50, weight: .bold, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(.black)
                         .opacity(fadeInOut ? 1 : 0) // Fade in effect
