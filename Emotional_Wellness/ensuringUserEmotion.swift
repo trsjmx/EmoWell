@@ -72,7 +72,7 @@ struct ensuringUserEmotion: View {
                             
                             NavigationLink(destination: Dolldisplay()) {
                                 Text("Yes")
-                                    .fontWeight(.bold)
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(width: 120)
@@ -85,7 +85,7 @@ struct ensuringUserEmotion: View {
                             
                             NavigationLink(destination: IntroPage1())  {
                                 Text("No")
-                                    .fontWeight(.bold)
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(width: 120)
