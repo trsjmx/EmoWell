@@ -150,7 +150,7 @@ struct Dolldisplay: View {
 
                         // Start Button
                         if isReadyToStart {
-                            NavigationLink(destination: MainGameLogicPage()) { // Navigate to MainGameLogicPage
+                            NavigationLink(destination: LinkPages(savedImageName: savedImageName)) {
                                 Text("Start")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
@@ -181,7 +181,7 @@ struct Dolldisplay: View {
     }
 
     func saveName() {
-        savedImageName = imageName
+        savedImageName = imageName // Update savedImageName with the user-entered name
         showConfirmation = true
         isReadyToStart = true
     }

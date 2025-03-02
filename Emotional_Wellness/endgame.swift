@@ -10,8 +10,10 @@ struct EndPage: View {
     @State private var starPositions: [CGSize] = []
     @State private var timer: Timer?
 
+    var savedImageName: String? // Add this line
+
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
                 // Background color
                 Color.white
@@ -33,12 +35,22 @@ struct EndPage: View {
                         .foregroundColor(.black.opacity(0.7))
                         .padding(.top, 50) // Add some padding from the top
                         .padding()
-                    Text(" Amal has fulfilled its duty, Hope it made you feel better!")
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity) // Ensures it spans the width
+                    
+                    if let name = savedImageName {
+                        Text("\(name) has fulfilled its duty, Hope it made you feel better!")
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity) // Ensures it spans the width
+                    } else {
+                        Text("Doll has fulfilled its duty, Hope it made you feel better!")
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity) // Ensures it spans the width
+                    }
                     
                     // Display the GIF here using WebView
                     WebView(gifName: "Untitled design-2") // Your GIF file name here
@@ -50,15 +62,14 @@ struct EndPage: View {
                 
             }
         }
-        .navigationBarBackButtonHidden(true) // Hiding back buttonÍ›
-            .onAppear {
-                generateStarPositions()
-                startStarRegeneration()
-            }
-            .onDisappear {
-                timer?.invalidate()
-            }
-        
+        .navigationBarBackButtonHidden(true) // Hiding back button
+        .onAppear {
+            generateStarPositions()
+            startStarRegeneration()
+        }
+        .onDisappear {
+            timer?.invalidate()
+        }
     }
     
     // Star generation logic
@@ -81,7 +92,6 @@ struct EndPage: View {
                 starPositions = positions
             }
         }
-   
     }
 
     func startStarRegeneration() {
