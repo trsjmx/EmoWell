@@ -10,7 +10,7 @@ import SwiftUI
 struct LinkPages: View {
     @State private var Transition: Bool = false
     var savedImageName: String? // Add this line
-    
+
     var body: some View {
         VStack {
 
@@ -21,7 +21,7 @@ struct LinkPages: View {
             
             else {
                 
-                EndPage(savedImageName: savedImageName)
+                EndPage(savedImageName: savedImageName) // Pass savedImageName to EndPage
 
             }
             

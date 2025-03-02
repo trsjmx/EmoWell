@@ -136,6 +136,7 @@ struct Dolldisplay: View {
                             Button(action: {
                                 savedImageName = nil // Clear the saved name
                                 isReadyToStart = true // Show the start button
+                                
                             }) {
                                 Text("No Thanks")
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -150,7 +151,7 @@ struct Dolldisplay: View {
 
                         // Start Button
                         if isReadyToStart {
-                            NavigationLink(destination: LinkPages(savedImageName: savedImageName)) {
+                            NavigationLink(destination: MainGameLogicPage(savedImageName: savedImageName)) {
                                 Text("Start")
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)

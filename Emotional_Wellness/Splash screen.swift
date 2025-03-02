@@ -41,7 +41,7 @@ struct Splash_screen: View {
                     }
                     
                     // Automatically navigate to the next page after 3 seconds
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         withAnimation(.easeInOut) {
                             isActive = true
                         }

@@ -28,6 +28,7 @@ struct MainGameLogicPage: View {
     // Single audio player to reuse for all dolls
     @State private var audioPlayer: AVAudioPlayer?
     
+    var savedImageName: String? // Add this line
     var body: some View {
         
         NavigationStack{
@@ -38,8 +39,9 @@ struct MainGameLogicPage: View {
                 Color.cyan.opacity(0.2)
                     .edgesIgnoringSafeArea(.all)
                 
+                
                     .navigationDestination(isPresented: $navigateToEndPage) {
-                        LinkPages() // The page to navigate to
+                        LinkPages(savedImageName: savedImageName)  // The page to navigate to
                     }
                 
                 

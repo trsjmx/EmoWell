@@ -144,8 +144,10 @@ struct CustomStarShape: Shape {
     }
 }
 
+
 struct EndPage_Previews: PreviewProvider {
     static var previews: some View {
         EndPage()
     }
 }
+
